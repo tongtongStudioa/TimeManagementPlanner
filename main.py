@@ -31,7 +31,8 @@ projects = [
 ]
 
 timetable = WeekTimeTable([day1, day2, day3, day4, day5])
+day1.show_free_time_intervals()
 free_time = timetable.show_free_time_during_week()
-timetable.plan_work_session(projects,6)
+#timetable.plan_work_session(projects,6)
 #print(timedelta(hours=0.8))
 
