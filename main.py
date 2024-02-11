@@ -25,12 +25,14 @@ day4 = WorkDay(4, busy_intervals1)
 day5 = WorkDay(5, busy_intervals1)
 
 projects = [
-    Project("Projet A", 3, 10), #timedelta(hours=2)
-    Project("Projet B", 2, 25), #timedelta(hours=1)
-    Project("Projet C", 1, 4) #timedelta(hours=3)
+    Project("Faire les courses", 3, 1), #timedelta(hours=2)
+    Project("Développement app", 2, 25), #timedelta(hours=1)
+    Project("Lecture", 1, 4) #timedelta(hours=3)
 ]
 
 timetable = WeekTimeTable([day1, day2, day3, day4, day5])
+print(timetable)
+timetable.plan_work_sessions(projects, 6)
 print(timetable)
 #print(timedelta(hours=0.8))
 

@@ -32,8 +32,7 @@ class WeekTimeTable:
         week_free_time = self.get_free_time_during_week()
         print(f"Temps total sur la semaine : {week_free_time}h")
         
-    def plan_work_session(self,projects,impact_total):
-        free_time_intervals = {}
+    def plan_work_sessions(self,projects,total_impact):
         for day in self.days:
-            free_time_intervals[day.code] = day.get_free_time_interval()
+            day.plan_day(projects, total_impact)
             

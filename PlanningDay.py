@@ -38,7 +38,8 @@ class WorkDay:
             start_free_time = busy_interval.end
         
         # Ajouter le dernier interval du jour
-        free_intervals.append(TimeInterval("Temps libre",self.busy_intervals[-1].end, end_time))
+        if (free_interval.total_time() > 0): 
+            free_intervals.append(TimeInterval("Temps libre",self.busy_intervals[-1].end, end_time))
             
         return free_intervals
     
@@ -60,17 +61,27 @@ class WorkDay:
         total_free_time = self.get_free_time_during_day()
         print(f"Temps total de libre pour ce jour : {total_free_time}h")
     
-    def add_work_session(self, projects, total_importance, time_available):
-        return "test"
+    def add_work_session(self,free_time_start, project, allocated_projec_time):
+        new_busy_interval = TimeInterval(project.name, free_time_start, free_time_start + allocated_projec_time)
+        #print(new_busy_interval)
+        return new_busy_interval
         
-    def plan_day(self,projects,total_importance):
+    def plan_day(self,projects,total_impact):
         free_intervals = self.get_free_time_interval()
+        new_busy_intervals = []
         for interval in free_intervals:
+            time_start = interval.start
+            #print(interval)
             for project in projects:
-                project_time = project.impact*interval.total_time()/total_importance
-                if project_time > 1/6:
-                    self.add_work_session()
-            
+                allocated_project_time = project.alocated_time(interval.total_time(), total_impact)
+                #print(round(allocated_project_time * 60,0))
+                if allocated_project_time > round(1.0/6,1):
+                    work_interval = self.add_work_session(time_start,project,allocated_project_time)
+                    new_busy_intervals.append(work_interval)
+                    time_start = work_interval.end
+                else: total_impact -= project.impact
+        self.busy_intervals.extend(new_busy_intervals)
+        self.busy_intervals.sort(key= lambda interval: interval.start)
             
             
             
