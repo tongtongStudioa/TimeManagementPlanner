@@ -11,12 +11,12 @@ from TimeTable import WeekTimeTable
 from Project_class import Project
     
 # Exemple d'utilisation
-busy_intervals1 = [TimeInterval(7,17),
-                  TimeInterval(19,20)]
+busy_intervals1 = [TimeInterval("Cours",7,17),
+                  TimeInterval("Diner",19,20)]
 
-busy_intervals2 = [TimeInterval(7,13),
-                  TimeInterval(15,16.5),
-                  TimeInterval(18.5,20)]
+busy_intervals2 = [TimeInterval("Cours",7,13),
+                  TimeInterval("Cours",15,16.5),
+                  TimeInterval("Sport",18.5,20)]
 
 day1 = WorkDay(1, busy_intervals1)
 day2 = WorkDay(2, busy_intervals2)
@@ -31,8 +31,6 @@ projects = [
 ]
 
 timetable = WeekTimeTable([day1, day2, day3, day4, day5])
-day1.show_free_time_intervals()
-free_time = timetable.show_free_time_during_week()
-#timetable.plan_work_session(projects,6)
+print(timetable)
 #print(timedelta(hours=0.8))
 
