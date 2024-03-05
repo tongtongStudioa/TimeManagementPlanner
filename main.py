@@ -2,7 +2,7 @@
 """
 Created on Tue Feb  6 17:17:13 2024
 
-@author: La famille tong
+@author: axel
 """
 from datetime import timedelta
 from PlanningDay import WorkDay
@@ -25,14 +25,14 @@ day4 = WorkDay(4, busy_intervals1)
 day5 = WorkDay(5, busy_intervals1)
 
 projects = [
-    Project("Faire les courses", 3, 1), #timedelta(hours=2)
-    Project("Développement app", 2, 25), #timedelta(hours=1)
-    Project("Lecture", 1, 4) #timedelta(hours=3)
+    Project("Faire les courses", 3, 1,1), #timedelta(hours=2)
+    Project("Développement app", 2, 25,4), #timedelta(hours=1)
+    Project("Lecture", 1, 4,4) #timedelta(hours=3)
 ]
 
 timetable = WeekTimeTable([day1, day2, day3, day4, day5])
 print(timetable)
-timetable.plan_work_sessions(projects, 6)
+timetable.plan_work_sessions(projects, 3+2+1,1+25+4)
 print(timetable)
 #print(timedelta(hours=0.8))
 

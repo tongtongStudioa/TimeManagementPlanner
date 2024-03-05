@@ -70,16 +70,20 @@ class WorkDay:
         free_intervals = self.get_free_time_interval()
         new_busy_intervals = []
         for interval in free_intervals:
+            # Définir le top départ
             time_start = interval.start
-            #print(interval)
             for project in projects:
+                # Calcul du temps à alloué au projet
                 allocated_project_time = project.alocated_time(interval.total_time(), total_impact)
-                #print(round(allocated_project_time * 60,0))
+                
+                #Vérification du temps minimal (10 minutes)
                 if allocated_project_time > round(1.0/6,1):
                     work_interval = self.add_work_session(time_start,project,allocated_project_time)
                     new_busy_intervals.append(work_interval)
+                    #Changement du temps de commencement du prochain projet
                     time_start = work_interval.end
-                else: total_impact -= project.impact
+                
+        # Ajouter les nouveaux intervalles de travail aux intervalles occupés
         self.busy_intervals.extend(new_busy_intervals)
         self.busy_intervals.sort(key= lambda interval: interval.start)
             

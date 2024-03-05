@@ -6,7 +6,7 @@ Created on Wed Feb  7 08:26:36 2024
 """
 
 class Project:
-    def __init__(self,name,impact,total_duration):
+    def __init__(self,name,impact,total_duration,project_weeks):
         self.name = name
         self.impact = impact
         self.total_duration = total_duration

@@ -7,6 +7,9 @@ Created on Tue Feb  6 18:13:16 2024
 from PlanningDay import WorkDay
 
 class WeekTimeTable:
+    """Une classe pour créer un emploi du temps pour la semaine.
+        @param : tableau des jours de la semaine
+        """
     def __init__(self, days):
         self.days = days
     
@@ -32,7 +35,9 @@ class WeekTimeTable:
         week_free_time = self.get_free_time_during_week()
         print(f"Temps total sur la semaine : {week_free_time}h")
         
-    def plan_work_sessions(self,projects,total_impact):
+    def plan_work_sessions(self,projects,total_impact,total_duration):
+        """Fonction pour planifier des sessions de travail."""
+        print("* Planning work sessions... *\n")
         for day in self.days:
             day.plan_day(projects, total_impact)
             
