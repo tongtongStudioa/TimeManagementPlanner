@@ -35,9 +35,11 @@ class WeekTimeTable:
         week_free_time = self.get_free_time_during_week()
         print(f"Temps total sur la semaine : {week_free_time}h")
         
-    def plan_work_sessions(self,projects,total_impact,total_duration):
+    def plan_work_sessions(self,projects):
         """Fonction pour planifier des sessions de travail."""
+        total_impact = sum(project.impact for project in projects)
+        total_duration = sum(project.total_duration for project in projects)
         print("* Planning work sessions... *\n")
         for day in self.days:
-            day.plan_day(projects, total_impact)
+            day.plan_day(projects, total_impact, total_duration)
             
